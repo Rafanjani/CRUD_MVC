@@ -1,16 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
+﻿<div class="text-center">
     <h1 class="display-4">CRUD Agencia de Viajes</h1>
 </div>
 
 <div>
-    @model List<MVC_Viajes.Models.Viajero>
+    @model List<MVC_Viajes.Models.Viaje>
 
     @{
-        ViewBag.Title = "Viajeros";
+        ViewBag.Title = "Viajes";
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
@@ -20,7 +16,7 @@
         }
     </script>
 
-    <h2>Lista de viajeros:</h2>
+    <h2>Lista de viajes:</h2>
 
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -28,22 +24,39 @@
     <table class="table">
         <tr>
             <th>
-                Nombre
+                Codigo
             </th>
             <th>
-                Apellido
+                Plazas
             </th>
-            <th></th>
+            <th>
+                Destino
+            </th>
+            <th>
+                Origen
+            </th>
+            <th>
+                Precio
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nombres)
+                    @Html.DisplayFor(modelItem => item.Codigo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Apellidos)
+                    @Html.DisplayFor(modelItem => item.Plazas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Origen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

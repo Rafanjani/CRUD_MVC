@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace MVC_Viajes.Controllers
 {
-    public class ViajeroController : Controller
+    public class ViajerosController : Controller
     {
+        private string _urlContorladorApi = "api/viajeros/";
+
         public async Task<IActionResult> Index()
         {
-            List<Viajero> viajeros = await DAO_Api.GetAsync<List<Viajero>>("api/viajeros/");
+            List<Viajero> viajeros = await DAO_Api.GetAsync<List<Viajero>>(_urlContorladorApi);
 
             if (viajeros == null)
                 return RedirectToAction("Error");
@@ -32,7 +34,7 @@ namespace MVC_Viajes.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Viajero post)
         {
-            Viajero viajero = await DAO_Api.PostAsync<Viajero>("api/viajeros/", post);
+            Viajero viajero = await DAO_Api.PostAsync<Viajero>(_urlContorladorApi, post);
 
             if (viajero == null)
                 return RedirectToAction("Error");
@@ -42,7 +44,7 @@ namespace MVC_Viajes.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            Viajero viajero = await DAO_Api.GetAsync<Viajero>("api/viajeros/" + id.ToString());
+            Viajero viajero = await DAO_Api.GetAsync<Viajero>(_urlContorladorApi + id.ToString());
 
             if (viajero == null)
                 return RedirectToAction("Error");
@@ -52,7 +54,7 @@ namespace MVC_Viajes.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            Viajero viajero = await DAO_Api.GetAsync<Viajero>("api/viajeros/" + id.ToString());
+            Viajero viajero = await DAO_Api.GetAsync<Viajero>(_urlContorladorApi + id.ToString());
 
             if (viajero == null)
                 return RedirectToAction("Error");
@@ -63,14 +65,14 @@ namespace MVC_Viajes.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(Viajero viajero)
         {
-            var response = await DAO_Api.PutAsync<Viajero>("api/viajeros/", viajero);
+            var response = await DAO_Api.PutAsync<Viajero>(_urlContorladorApi, viajero);
 
             return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            Viajero viajero = await DAO_Api.DeleteAsync<Viajero>("api/viajeros/" + id.ToString());
+            Viajero viajero = await DAO_Api.DeleteAsync<Viajero>(_urlContorladorApi + id.ToString());
 
             if (viajero == null)
                 return RedirectToAction("Error");

@@ -53,7 +53,7 @@ namespace MVC_Viajes
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Viajero}/{action=Index}/{id?}");
+                    template: "{controller=Viajeros}/{action=Index}/{id?}");
             });
         }
     }
