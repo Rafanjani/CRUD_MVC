@@ -1,0 +1,64 @@
+﻿<div class="text-center">
+    <h1 class="display-4">CRUD Agencia de Viajes</h1>
+</div>
+
+<div>
+    @model List<MVC_Viajes.Models.Vista_Viaje_Viajero>
+
+    @{
+        ViewBag.Title = "Asociaciones";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <script type="text/javascript">
+        function confirmar() {
+            return confirm("Desea eliminar este registro?");
+        }
+    </script>
+
+    <h2>Lista de asociaciones:</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Viajero
+            </th>
+            <th>
+                Codigo Viaje
+            </th>
+            <th>
+                Destino
+            </th>
+            <th>
+                Origen
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Viajero.Nombres)  @Html.DisplayFor(modelItem => item.Viajero.Apellidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Viaje.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Viaje.Destino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Viaje.Origen)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { Id = item.Id }, htmlAttributes: new { onclick = "return confirmar();" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
